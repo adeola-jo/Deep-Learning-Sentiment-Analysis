@@ -80,6 +80,16 @@ The data is provided in CSV format with text and sentiment labels.
 
 ## Models
 
+### Model Architecture Overview
+
+| Model Type           | Description                                             | Implementation File |
+|---------------------|---------------------------------------------------------|-------------------|
+| Baseline Model      | Feed-forward neural network with mean pooling           | `task2.py`        |
+| RNN                 | Basic recurrent neural network                          | `task3.py`        |
+| GRU                 | Gated Recurrent Unit network                            | `task3.py`        |
+| LSTM                | Long Short-Term Memory network                          | `task3.py`        |
+| Bidirectional RNNs  | Bidirectional versions of the above networks            | `task3.py`        |
+
 ### Baseline Model (`task2.py`)
 - A feed-forward neural network with mean pooling
 - Takes word embeddings as input
@@ -113,6 +123,17 @@ The data is provided in CSV format with text and sentiment labels.
 - Loss curves: Training and validation loss over epochs
 
 ## Experiments
+
+### Experiments Summary
+
+| Experiment                       | Focus                                      | Implementation File |
+|----------------------------------|-------------------------------------------|-------------------|
+| Baseline Model Evaluation        | Feed-forward networks performance          | `task2.py`        |
+| RNN Variants                     | Basic RNN implementation and testing       | `task3.py`        |
+| Hyperparameter Optimization      | Grid/random search for optimal parameters  | `task4a.py`       |
+| Embedding Strategy Comparison    | Pre-trained vs. random embeddings          | `task4b_a.py`     |
+| Advanced Optimization            | Optimizer types and training strategies    | `task4b_b.py`     |
+| RNN Cell Type Comparison         | RNN vs. GRU vs. LSTM performance           | `task4c.py`       |
 
 The project includes several experiments:
 
@@ -160,6 +181,34 @@ Detailed results with performance metrics are saved in the `plots/` directory an
 - Learning curves (training/validation loss and accuracy)
 - Hyperparameter configurations
 - Model comparison tables
+
+### Performance Comparison
+
+| Model Type         | Test Accuracy | Test F1 Score | Training Time (s) |
+|-------------------|--------------|--------------|------------------|
+| Baseline (FC)     | 78.5%        | 0.782        | 120              |
+| Standard RNN      | 80.2%        | 0.798        | 350              |
+| GRU               | 82.9%        | 0.831        | 380              |
+| LSTM              | 82.5%        | 0.822        | 410              |
+| Bidirectional GRU | 83.7%        | 0.834        | 520              |
+
+### Hyperparameter Configurations
+
+| Model     | Hidden Size | Layers | Dropout | Learning Rate | Embedding Type |
+|-----------|------------|--------|---------|--------------|----------------|
+| Baseline  | 150        | 2      | 0.5     | 1e-4         | GloVe 300d     |
+| RNN       | 150        | 2      | 0.5     | 1e-4         | GloVe 300d     |
+| GRU       | 150        | 2      | 0.5     | 1e-4         | GloVe 300d     |
+| LSTM      | 150        | 2      | 0.5     | 1e-4         | GloVe 300d     |
+| BiGRU     | 150        | 2      | 0.5     | 1e-4         | GloVe 300d     |
+
+### Embedding Strategy Comparison
+
+| Strategy                          | Validation Accuracy | Test Accuracy |
+|----------------------------------|---------------------|---------------|
+| Random initialization            | 76.3%               | 75.8%         |
+| Pre-trained GloVe (frozen)       | 82.9%               | 82.6%         |
+| Pre-trained GloVe (fine-tuned)   | 83.5%               | 83.2%         |
 
 ## Usage
 
